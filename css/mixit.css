@@ -5,6 +5,20 @@ section {
 h1 {
   font-weight: 300;
 }
+.sponsors {
+  background: white;
+  color: #1F2222;
+  border: none;
+  text-align: left;
+}
+.sponsors img{
+  margin:10px;
+  text-align: center;
+}
+
+
+
+
 .backbone {
   border-left: solid 20px #0071B5;
   background: #0071B5;
