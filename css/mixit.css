@@ -1,0 +1,55 @@
+section {
+  background: #EEE;
+  color: #434343;
+}
+h1 {
+  font-weight: 300;
+}
+.backbone {
+  border-left: solid 20px #0071B5;
+  background: #0071B5;
+  color: #FFF;
+  border: none;
+}
+.backbone.title {
+  background: #0071B5;
+  color: #FFF;
+  border: none;
+}
+.ember {
+  border-left: solid 20px orange;
+}
+.ember.title {
+  background: orange;
+  color: #F6ECE8;
+  border: none;
+}
+.angular {
+  border-left: solid 20px #DD1B16;
+}
+.angular.title {
+  background: #DD1B16;
+  color: #F2F2F2;
+  border: none;
+}
+li.backbone,
+li.ember,
+li.angular {
+  padding-left: 0.4em;
+}
+img {
+  background: #FFF;
+  padding: 0.4em;
+}
+ul {
+  list-style: none;
+}
+pre code {
+  background: none;
+}
+.presentation aside {
+  font-size: 50%;
+  position: absolute;
+  right: 1em;
+  bottom: 0.4em;
+}
