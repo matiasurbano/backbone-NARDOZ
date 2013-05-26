@@ -170,148 +170,111 @@
           </ul>
         </li>
         <li><i class="icon-chevron-sign-right"></i>     Dominar Firebug o las Devtools de chrome</li>
-
-
-
-
+        <li><i class="icon-chevron-sign-right"></i>     Conocer los selectores de jquery</li>
+        <li><i class="icon-chevron-sign-right"></i>     Familiarizarte con underscore</li>
+        <li><i class="icon-chevron-sign-right"></i>     Investigar cómo armar tu stack</li>
       </ul>
     </section>
 
-
-
-    <!-- Object Model -->
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="object-model">
-      <h1>Object Model</h1>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="object-model-backbone" class="backbone">
-      <h1>Object Model</h1>
-      <ul>
-        <li>Used internally</li>
-        <li>Based on _.extend</li>
-        <li>Brings inheritance</li>
-      </ul>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="object-model-backbone-code" class="backbone">
-<pre><code class="javascript"><span class="keyword">var</span> HandlebarsView = <strong>Backbone.View.extend</strong>({
-  render: <span class="keyword">function</span>() {
-    <span class="keyword">if</span> (!_.isFunction(<span class="keyword">this</span>.template)) {
-      <span class="keyword">this</span>.tmpl = Handlebars.compile(<span class="keyword">this</span>.tmpl);
-    }
-    <span class="keyword">this</span>.$el.html(<span class="keyword">this</span>.tmpl(<span class="keyword">this</span>.model||<span class="keyword">this</span>.collection||{}));
-    <span class="keyword">return</span> <span class="keyword">this</span>;
-  }
-});
-
-<span class="keyword">var</span> TaskView = <strong>HandlebarsView.extend</strong>({
-  render: <span class="keyword">function</span>() {
-    console.log(<span class="string">'Rendering...'</span>);
-    <strong>TaskView.__super__.render.apply(<span class="keyword">this</span>);</strong>
-  }
-});
-</code></pre>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="object-model-ember" class="ember">
-      <h1>Object Model</h1>
-      <ul>
-        <li>Exposed to the user</li>
-        <li>Classes &amp; Inheritance</li>
-        <li>Reopening classes</li>
-        <li>Computed properties</li>
-        <li>Observers &amp; Bindings</li>
-      </ul>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="object-model-ember-code-1" class="ember">
-<pre><code class="cs"><span class="keyword">var</span> Task = <strong>Ember.Object.extend</strong>({
-  done: <span class="keyword">false</span>,
-  init: function() {
-    <span class="keyword">this</span>.createdAt = <span class="keyword">new</span> Date();
-  },
-  createdSince: function() {
-    <span class="keyword">return</span> moment(<span class="keyword">this</span>.<span class="keyword">get</span>(<span class="string">'createdAt'</span>)).fromNow();
-  }<strong>.property(<span class="string">'createdAt'</span>)</strong>
-});
-
-<span class="keyword">var</span> User = Ember.Object.extend({
-  remainingTasks: function() {
-    <span class="keyword">return</span> <span class="keyword">this</span>.<span class="keyword">get</span>(<span class="string">'tasks'</span>).filterProperty(<span class="string">'done'</span>, <span class="keyword">false</span>)
-                            .<span class="keyword">get</span>(<span class="string">'length'</span>);
-  }<strong>.property(<span class="string">'tasks.@each.done'</span>)</strong>
-});
-</code></pre>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="object-model-ember-code-2" class="ember">
-<pre><code class="javascript"><span class="keyword">var</span> task1 = <strong>Task.create({title: <span class="string">'Go to Mix-IT'</span>});</strong>
-task1<strong>.set(<span class="string">'done'</span>, <span class="literal">true</span>)</strong>;
-console.log(task1.get(<span class="string">'summary'</span>));
-
-<span class="keyword">var</span> task2 = Task.create({title: <span class="string">'Enjoy the party!'</span>});
-console.log(task2<strong>.get(<span class="string">'summary'</span>)</strong>);
-
-<span class="keyword">var</span> user = User.create();
-user.set(<span class="string">'tasks'</span>, [task1, task2]);
-console.log(<span class="string">'Remaining tasks: '</span> + user<strong>.get(<span class="string">'remainingTasks'</span>)</strong>);
-</code></pre>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="services-di-angular" class="angular">
-      <h1>Services &amp; Dependency Injection</h1>
-      <ul>
-        <li>OMG!! Dependency Injection!!!</li>
-        <li>Separation of Concerns</li>
-        <li>Testability</li>
-      </ul>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="services-di-angular-code" class="angular">
-<pre><code class="javascript">
-module.factory(<strong><span class="string">'Task'</span></strong>, [<span class="string">'$resource'</span>, <span class="keyword">function</span>($resource) {
-  <span class="keyword">return</span> $resource(<span class="string">'http://localhost\\:3000/tasks/:id'</span>, {}, {
-    query: {method: <span class="string">'GET'</span>, isArray: <span class="literal">false</span>}
-  });
-}]);
-
-<span class="keyword">var</span> TasksCtrl = [<span class="string">'$scope'</span>, <strong><span class="string">'Task'</span></strong>, <span class="keyword">function</span>($scope, <strong>Task</strong>) {
-  Task.query({}, <span class="keyword">function</span>(response) {
-    $scope.tasks = response.tasks;
-  });
-}];
-</code></pre>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="object-model-conclusion">
-      <h1>Object Model</h1>
-      <ul>
-        <li class="backbone">Simple inheritance</li>
-        <li class="ember">A powerful Object Model</li>
-        <li class="angular">Works with plain old JavaScript</li>
-      </ul>
-    </section>
-
-    <!-- MVwhatever -->
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="mv*">
-      <h1>MVwhatever</h1>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="mv*-intro">
-      <h1>MVwhatever</h1>
-      <ul>
-        <li>Model</li>
-        <li>View</li>
-        <li><i class="icon-star-empty"></i>
-          <ul>
-            <li>Controller</li>
-            <li>ViewModel</li>
-            <li>Delegate</li>
-            <li>...</li>
-          </ul>
+    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="backbone-tools" class="backbone title">
+      <ul style="font-size: 80%">
+        <li><i class="icon-chevron-sign-right"></i>     Herramientas para completar tu stack</li>
+        <br />
+        <li><i class="icon-chevron-sign-right"></i>
+          <a href='http://underscorejs.org/'>Underscore</a> o
+          <a href='http://lodash.com/'>Lodash</a>
+        </li>
+        <li><i class="icon-chevron-sign-right"></i>     <a href='http://handlebarsjs.com/'>Handlebars</a></li>
+        <li><i class="icon-chevron-sign-right"></i>     <a href='http://requirejs.org/'>RequireJS</a></li>
+        <li><i class="icon-chevron-sign-right"></i>     <a href='http://marionettejs.com/'>Marionette</a></li>
+        <li><i class="icon-chevron-sign-right"></i>     <a href='http://chaplinjs.org/'>Chaplin</a></li>
+        <li><i class="icon-chevron-sign-right"></i>     <a href='http://thoraxjs.org/'>Thorax</a></li>
+        <li><i class="icon-chevron-sign-right"></i>
+          <a href='https://github.com/documentcloud/backbone/wiki/Extensions,-Plugins,-Resources'>y muchos plugins más...</a>
         </li>
       </ul>
     </section>
+
+    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="backbone-ventajas" class="backbone ventajas">
+      <ul style="font-size: 80%">
+        <li><i class="icon-thumbs-up"></i>     Ventajas</li>
+        <br />
+        <li><i class="icon-star"></i>       <strong>Más de una forma</strong> de hacer las cosas</li>
+        <li><i class="icon-ok"></i>         Te permite amar el stack <strong>a tu gusto</strong></li>
+        <li><i class="icon-heart"></i>      Nadie toma las deciciones por <strong>vos</strong></li>
+        <li><i class="icon-smile"></i>      Te brinda la <strong>estructura</strong> básica de tu proyecto</li>
+        <li><i class="icon-ok-circle"></i>  Vas a aprender <strong>Javascript</strong> en serio</li>
+      </ul>
+    </section>
+
+    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="backbone-desventajas" class="backbone desventajas">
+      <ul style="font-size: 80%">
+        <li><i class="icon-thumbs-down"></i>     <strong>DES</strong>ventajas</li>
+        <br />
+        <li><i class="icon-star-half"></i>          <strong>No hay una forma</strong> de hacer las cosas</li>
+        <li><i class="icon-remove"></i>             <strong>Tenés</strong> que amar el stack a tu gusto</li>
+        <li><i class="icon-warning-sign"></i>       <strong>Nadie</strong> toma las decisiones por vos</li>
+        <li><i class="icon-frown"></i>              Te brinda <strong>tan sólo</strong> la estructura basica de tu proyecto</li>
+        <li><i class="icon-ban-circle"></i>         Vas a <strong>tener</strong> que aprender Javascript en serio</li>
+      </ul>
+    </section>
+
+    <!-- Object Model -->
+    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="object-model">
+      <h1>Herencia de clases en Backbone</h1>
+    </section>
+
+    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="object-model-backbone" class="backbone">
+      <h1>Modelo de objetos</h1>
+      <ul>
+        <li>Usado internament por Backbone</li>
+        <li>Basado en _.extend</li>
+        <li>Permite usar herencia de clases den Javascript</li>
+      </ul>
+    </section>
+
+    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="object-model-backbone-code" class="backbone">
+      <pre>
+        <code class="javascript">
+          <span class="keyword">var</span> HandlebarsView = <strong>Backbone.View.extend</strong>({
+        render: <span class="keyword">function</span>() {
+          <span class="keyword">if</span> (!_.isFunction(<span class="keyword">this</span>.template)) {
+            <span class="keyword">this</span>.tmpl = Handlebars.compile(<span class="keyword">this</span>.tmpl);
+          }
+          <span class="keyword">this</span>.$el.html(<span class="keyword">this</span>.tmpl(<span class="keyword">this</span>.model||<span class="keyword">this</span>.collection||{}));
+          <span class="keyword">return</span> <span class="keyword">this</span>;
+        }
+      });
+
+      <span class="keyword">var</span> TaskView = <strong>HandlebarsView.extend</strong>({
+        render: <span class="keyword">function</span>() {
+          console.log(<span class="string">'Rendering...'</span>);
+          <strong>TaskView.__super__.render.apply(<span class="keyword">this</span>);</strong>
+        }
+      });
+      </code>
+      </pre>
+    </section>
+
+    <!-- MVwhatever -->
+    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="mvX-intro">
+      <h1>M-V-loquevenga...</h1>
+      <ul>
+        <li>Model</li>
+        <li>View</li>
+        <li><i class="icon-star-empty"></i></li>
+      </ul>
+    </section>
+
     <section style="font-size: 258.4%; padding: 20px 263.1px;" id="model-backbone" class="backbone">
       <h1>Model</h1>
       <ul>
-        <li>Mutators</li>
         <li>Events</li>
         <li>Sync</li>
         <li>Validation?!</li>
       </ul>
     </section>
+
     <section style="font-size: 258.4%; padding: 20px 263.1px;" id="model-backbone-code" class="backbone">
 <pre><code class="cs"><span class="keyword">var</span> Task  = Backbone.Model.extend({
   defaults: {
@@ -374,136 +337,17 @@ module.factory(<strong><span class="string">'Task'</span></strong>, [<span class
 });
 </code></pre>
     </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="model-ember" class="ember">
-      <h1>Model</h1>
-      <ul>
-        <li>Features of Ember.Object</li>
-        <li>ActiveRecord like with ember-data</li>
-      </ul>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="view-ember" class="ember">
-      <h1>View</h1>
-      <ul>
-        <li>String based templating with Handlebars</li>
-        <li>Handle user interactions</li>
-        <li>Event delegation</li>
-        <li>Default implementation</li>
-      </ul>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="view-ember-code" class="ember">
-<pre><code class="xml">
-<span class="tag">&lt;<span class="title">ul</span>&gt;</span>
-  <strong>{{#each task in model}}</strong>
-    <span class="tag">&lt;<span class="title">li</span> {{<span class="attribute">bindAttr</span> <span class="attribute">class</span>=<span class="value">"task.active:active"</span>}}&gt;</span>
-      <span class="tag">&lt;<span class="title">h1</span>&gt;</span>
-        <strong>{{#linkTo "tasks.show" task}}{{task.title}}{{/linkTo}}</strong>
-      <span class="tag">&lt;/<span class="title">h1</span>&gt;</span>
-    <span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-  <strong>{{/each}}</strong>
-  <span class="tag">&lt;<span class="title">li</span>&gt;</span>{{#linkTo "tasks.new"}}New task...{{/linkTo}}<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">ul</span>&gt;</span>
-</code></pre>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="controller-ember" class="ember">
-      <h1>Controller</h1>
-      <ul>
-        <li>Decorate the model with display logic</li>
-        <li>Templates are connected to controllers</li>
-        <li>Default implementation</li>
-      </ul>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="model-angular" class="angular">
-      <h1>Model</h1>
-      <ul>
-        <li>Plain JavaScript Objects</li>
-        <li>ActiveRecord like with $resource</li>
-      </ul>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="model-angular-scope" class="angular">
-      <h1>Scope</h1>
-      <ul>
-        <li>Glue between controller and view</li>
-        <li>Refers to the model</li>
-        <li>Responsible for two-way data binding</li>
-      </ul>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="view-angular" class="angular">
-      <h1>View</h1>
-      <ul>
-        <li>DOM templating</li>
-        <li>Transparent for the user</li>
-        <li>Automatically compiled</li>
-        <li>May seem a bit more rigid</li>
-      </ul>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="view-angular-code" class="angular">
-<pre><code class="xml"><span class="tag">&lt;<span class="title">ul</span>&gt;</span>
-  <span class="tag">&lt;<span class="title">li</span> <strong><span class="attribute">ng-repeat</span>=<span class="value">"task in tasks"</span></strong>
-      <span class="attribute">ng-class</span>=<span class="value">"{active: task.active}"</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">h1</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#/tasks/<strong>{{task.id}}</strong>"</span>&gt;</span><strong>{{task.title}}</strong><span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">h1</span>&gt;</span>
-  <span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-  <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#/tasks/new"</span>&gt;</span>New task...<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">ul</span>&gt;</span>
-</code></pre>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="controller-angular" class="angular">
-      <h1>Controller</h1>
-      <ul>
-        <li>Written in JavaScript!</li>
-        <li>Dependency Injection</li>
-        <li>Application behavior</li>
-        <li>Populates the scope</li>
-      </ul>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="controller-angular-code" class="angular">
-      <div>
-<pre><code class="javascript"><span class="keyword">var</span> TaskDetailsCtrl = [<span class="string">'$scope'</span>, <span class="string">'$routeParams'</span>, <span class="string">'Task'</span>,
-  <span class="keyword">function</span>(<strong>$scope, $routeParams, Task</strong>) {
-    <span class="keyword">var</span> task = Task.get({id: $routeParams.taskId},
-      <span class="keyword">function</span>(response) {
-        <strong>$scope.task = response.task;</strong>
-        Task.active($scope.task);
-      }
-    );
-  }
-];
-</code></pre>
-<pre><code class="xml"><span class="tag">&lt;<span class="title">h1</span>&gt;</span><strong>{{task.title}}</strong><span class="tag">&lt;/<span class="title">h1</span>&gt;</span>
-<span class="tag">&lt;<span class="title">p</span>&gt;</span><strong>{{task.description}}</strong><span class="tag">&lt;/<span class="title">p</span>&gt;</span>
-</code></pre>
-      </div>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="mv*-conclusion">
-      <h1>MV*</h1>
-      <ul>
-        <li class="backbone">A basic structure</li>
-        <li class="ember">A full MVC with string based templates</li>
-        <li class="angular">Concisely embracing HTML &amp; DI</li>
-      </ul>
-    </section>
 
     <!-- Binding -->
     <section style="font-size: 258.4%; padding: 20px 263.1px;" id="binding">
       <h1>Binding</h1>
     </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="binding-intro">
-      <h1>Binding</h1>
-      <ul>
-        <li>Connecting object properties</li>
-        <li>Data synchronization between data and view</li>
-      </ul>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="binding-demo">
-      <div>
-        <div><input ng-model="name" placeholder="Name..." type="text"></div>
-        <div>Hello <span></span>!</div>
-      </div>
-    </section>
     <section style="font-size: 258.4%; padding: 20px 263.1px;" id="binding-backbone" class="backbone">
       <h1>Binding</h1>
       <ul>
         <li>No automatic binding</li>
-        <li>Manual wiring through events</li>
+        <li>Wiring through events</li>
+        <li>Fine grained control with manual wiring</li>
       </ul>
     </section>
     <section style="font-size: 258.4%; padding: 20px 263.1px;" id="binding-backbone-model-events" class="backbone">
@@ -548,79 +392,6 @@ module.factory(<strong><span class="string">'Task'</span></strong>, [<span class
 });
 </code></pre>
       </div>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="binding-ember" class="ember">
-      <h1>Binding</h1>
-      <ul>
-        <li>Two way data-binding</li>
-        <li>Built in the core of Ember.Object</li>
-        <li>Handlebars + Metamorph</li>
-      </ul>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="binding-ember-metamorph" class="ember">
-<pre><code class="html xml"><span class="tag">&lt;<span class="title">ul</span>&gt;</span>
-  <strong><span class="tag">&lt;<span class="title">script</span> <span class="attribute">id</span>=<span class="value">"metamorph-0-start"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></strong>
-  <strong><span class="tag">&lt;<span class="title">script</span> <span class="attribute">id</span>=<span class="value">"metamorph-2-start"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></strong>
-  <span class="tag">&lt;<span class="title">li</span> <span class="attribute">class</span>=<span class="value">"active"</span> <span class="attribute">data-bindattr-1</span>=<span class="value">"1"</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">h1</span>&gt;</span>
-      <span class="tag">&lt;<span class="title">a</span> <span class="attribute">id</span>=<span class="value">"ember378"</span> <span class="attribute">class</span>=<span class="value">"active"</span> <span class="attribute">href</span>=<span class="value">"#/tasks/1"</span>&gt;</span>
-        <strong><span class="tag">&lt;<span class="title">script</span> <span class="attribute">id</span>=<span class="value">"metamorph-4-start"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></strong>
-        Task1
-        <strong><span class="tag">&lt;<span class="title">script</span> <span class="attribute">id</span>=<span class="value">"metamorph-4-end"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></strong>
-      <span class="tag">&lt;/<span class="title">a</span>&gt;</span>
-    <span class="tag">&lt;/<span class="title">h1</span>&gt;</span>
-  <span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-  <strong><span class="tag">&lt;<span class="title">script</span> <span class="attribute">id</span>=<span class="value">"metamorph-2-end"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></strong>
-  <strong><span class="tag">&lt;<span class="title">script</span> <span class="attribute">id</span>=<span class="value">"metamorph-3-start"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></strong>
-  <span class="tag">&lt;<span class="title">li</span> <span class="attribute">class</span>=<span class="value">""</span> <span class="attribute">data-bindattr-2</span>=<span class="value">"2"</span>&gt;</span>...<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-  <strong><span class="tag">&lt;<span class="title">script</span> <span class="attribute">id</span>=<span class="value">"metamorph-3-end"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></strong>
-  <strong><span class="tag">&lt;<span class="title">script</span> <span class="attribute">id</span>=<span class="value">"metamorph-0-end"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></strong>
-  <span class="tag">&lt;<span class="title">li</span>&gt;</span>...<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">ul</span>&gt;</span>
-</code></pre>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="binding-ember-code" class="ember">
-      <div>
-<pre><code class="javascript"><span class="keyword">var</span> AppView = Ember.View.extend({
-  template: $(<span class="string">'#ember-binding-template'</span>).html()
-});
-</code></pre>
-<pre><code class="xml"><span class="tag">&lt;<span class="title">div</span>&gt;</span><strong>{{input value="name"}}</strong><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
-<span class="tag">&lt;<span class="title">div</span>&gt;</span>Hello {{name}}!<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
-</code></pre>
-      </div>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="binding-angular" class="angular">
-      <h1>Binding</h1>
-      <ul>
-        <li>Two way data-binding</li>
-        <li>Managed by the Scope</li>
-        <li>Working on plain JavaScript objects</li>
-      </ul>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="binding-angular-dirty-checking" class="angular">
-      <h1>Dirty Checking</h1>
-      <ul>
-        <li>Angular execution context</li>
-        <li>Entering digest loop after execution</li>
-        <li>Search for modifications in scopes</li>
-        <li>Precisely update the DOM accordingly</li>
-      </ul>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="binding-angular-code" class="angular">
-<pre><code class="xml"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">ng-app</span>&gt;</span>
-  <span class="tag">&lt;<span class="title">div</span>&gt;</span><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">ng-model</span>=<span class="value">"name"</span> /&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
-  <span class="tag">&lt;<span class="title">div</span>&gt;</span>Hello {{name}}!<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
-</code></pre>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="binding-conclusion">
-      <h1>Binding</h1>
-      <ul>
-        <li class="backbone">Fine grained control with manual wiring</li>
-        <li class="ember">Metamorph can be disturbing</li>
-        <li class="angular">Cost of Dirty Checking</li>
-      </ul>
     </section>
 
     <!-- Routing -->
@@ -702,96 +473,7 @@ module.factory(<strong><span class="string">'Task'</span></strong>, [<span class
 }
 </code></pre>
     </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="routing-ember" class="ember">
-      <h1>Routing</h1>
-      <ul>
-        <li>Router is first class citizen</li>
-        <li>Router as a finite state machine</li>
-        <li>Convention over Configuration</li>
-      </ul>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="routing-ember-code-1" class="ember">
-<pre><code class="javascript">Tasks.Router.map(<span class="keyword">function</span>() {
-  <span class="keyword">this</span>.resource(<span class="string">'tasks'</span>, <span class="keyword">function</span>() {
-    <span class="keyword">this</span>.route(<span class="string">'new'</span>, { path: <span class="string">'/new'</span> });
-    <span class="keyword">this</span>.route(<span class="string">'show'</span>, { path: <span class="string">'/:task_id'</span> });
-    <span class="keyword">this</span>.route(<span class="string">'edit'</span>, { path: <span class="string">'/:task_id/edit'</span> });
-    <span class="keyword">this</span>.route(<span class="string">'remove'</span>, { path: <span class="string">'/:task_id/remove'</span> });
-  });
-});
-</code></pre>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="routing-ember-code-2" class="ember">
-<pre><code class="xml"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"tasks"</span>&gt;</span>
-  <span class="tag">&lt;<span class="title">ul</span>&gt;</span>
-    {{#each task in model}}
-      <span class="tag">&lt;<span class="title">li</span> {{<span class="attribute">bindAttr</span> <span class="attribute">class</span>=<span class="value">"task.active:active"</span>}}&gt;</span>
-        <span class="tag">&lt;<span class="title">h1</span>&gt;</span>
-          {{#linkTo "tasks.show" task}}
-            {{task.title}}
-          {{/linkTo}}
-        <span class="tag">&lt;/<span class="title">h1</span>&gt;</span>
-      <span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-    {{/each}}
-    <span class="tag">&lt;<span class="title">li</span>&gt;</span>{{#linkTo "tasks.new"}}New task...{{/linkTo}}<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-  <span class="tag">&lt;/<span class="title">ul</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
-<strong>{{outlet}}</strong>
-</code></pre>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="routing-ember-code-3" class="ember">
-<pre><code class="javascript">Tasks.TasksNewRoute = Ember.Route.extend({
-  <strong>renderTemplate:</strong> <span class="keyword">function</span>() {
-    <span class="keyword">this</span>.render(<span class="string">'tasks/form'</span>);
-  },
-  <strong>model:</strong> <span class="keyword">function</span>() {
-    <span class="keyword">return</span> Tasks.Task.createRecord({
-      title: <span class="string">'New Task'</span>,
-      description: <span class="string">'Desc'</span>
-    });
-  },
-  <strong>setupController:</strong> <span class="keyword">function</span>(controller, task) {
-    Tasks.Task.active(task);
-    controller.set(<span class="string">'content'</span>, task);
-  },
-  <strong>events:</strong> {
-    save: <span class="keyword">function</span>(task) {
-      task.one(<span class="string">'didCreate'</span>, <span class="keyword">this</span>, <span class="keyword">function</span>() {
-        <span class="keyword">this</span>.transitionTo(<span class="string">'tasks.show'</span>, task);
-      });
-      <span class="keyword">this</span>.get(<span class="string">'store'</span>).commit();
-    }
-  }
-});
-</code></pre>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="routing-angular" class="angular">
-      <h1>Routing</h1>
-      <ul>
-        <li>Router looks to be second class citizen</li>
-        <li>$router service to declare routes</li>
-        <li>$routeParams service to get route parameters</li>
-        <li>One directive: ng-view</li>
-      </ul>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="routing-angular-code" class="angular">
-<pre><code class="ruby"><span class="variable">$routeProvider</span>.
-<span class="keyword">when</span>(<span class="string">'/tasks'</span>, {
-  <strong><span class="symbol">templateUrl:</span> <span class="string">'partials/tasks.html'</span>,</strong>
-  <strong><span class="symbol">controller:</span> <span class="constant">TasksCtrl</span></strong>
-}).
-<span class="keyword">when</span>(<span class="string">'/tasks/:taskId'</span>, {
-  <span class="symbol">templateUrl:</span> <span class="string">'partials/tasks.html'</span>,
-  <span class="symbol">controller:</span> <span class="constant">TasksCtrl</span>,
-  <span class="symbol">nested:</span> {
-    <span class="symbol">templateUrl:</span> <span class="string">'partials/task-details.html'</span>,
-    <span class="symbol">controller:</span> <span class="constant">TaskDetailsCtrl</span>
-  }
-}).
-<span class="regexp">//</span> ...
-otherwise({<span class="symbol">redirectTo:</span> <span class="string">'/tasks'</span>});
-</code></pre>
-    </section>
+
     <section style="font-size: 258.4%; padding: 20px 263.1px;" id="routing-conclusion">
       <h1>Routing</h1>
       <ul>
@@ -806,6 +488,7 @@ otherwise({<span class="symbol">redirectTo:</span> <span class="string">'/tasks'
     <section style="font-size: 258.4%; padding: 20px 263.1px;" id="api">
       <h1>Server API</h1>
     </section>
+
     <section style="font-size: 258.4%; padding: 20px 263.1px;" id="api-intro">
       <h1>Server API</h1>
       <ul>
@@ -846,59 +529,6 @@ otherwise({<span class="symbol">redirectTo:</span> <span class="string">'/tasks'
 }
 </code></pre>
     </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="api-ember" class="ember">
-      <h1>Ember Data</h1>
-      <ul>
-        <li>ActiveRecord like</li>
-        <li>Mapping, Relationships &amp; Transactions!</li>
-        <li>Different adapters</li>
-        <li>Lifecycle events</li>
-        <li>Still in active development</li>
-      </ul>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="api-ember-code" class="ember">
-<pre><code class="javascript">save: <span class="keyword">function</span>(task) {
-  <strong>task.one(<span class="string">'didCreate'</span>, <span class="keyword">this</span>, <span class="keyword">function</span>() {</strong>
-    <span class="keyword">this</span>.transitionTo(<span class="string">'tasks.show'</span>, task);
-  });
-  <strong><span class="keyword">this</span>.get(<span class="string">'store'</span>).commit();</strong>
-}
-</code></pre>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="api-angular" class="angular">
-      <h1>$http &amp; $resource</h1>
-      <ul>
-        <li>$http for low level sync</li>
-        <li>$resource for high level sync</li>
-        <li>Testability: benefits from DI</li>
-        <li>Communication with the API is customizable</li>
-        <li>Custom response parsing needs little tricks</li>
-      </ul>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="api-angular-code" class="angular">
-<pre><code class="javascript">module.factory(<span class="string">'Task'</span>, [<span class="string">'$resource'</span>, <span class="keyword">function</span>($resource) {
-  <span class="keyword">var</span> resource = <strong>$resource(<span class="string">'http://localhost\\:3000/tasks/:id'</span></strong>, {}, {
-    query: {method: <span class="string">'GET'</span>, isArray: <span class="literal">false</span>}
-  });
-]);
-
-<span class="keyword">var</span> TaskNewCtrl = [<span class="string">'$scope'</span>, <span class="string">'$location'</span>, <strong><span class="string">'Task'</span></strong>,
-  <span class="keyword">function</span>($scope, $location, <strong>Task</strong>) {
-    <span class="keyword">var</span> task = <strong><span class="keyword">new</span> Task</strong>({
-      title: <span class="string">'New Task'</span>,
-      description: <span class="string">'Desc'</span>
-    });
-    $scope.task = task;
-
-    $scope.save = <span class="keyword">function</span>() {
-      <strong><span class="keyword">this</span>.task.$save</strong>(<span class="keyword">function</span>(t) {
-        $location.path(<span class="string">'/tasks/'</span> + t.id);
-      });
-    };
-  }
-];
-</code></pre>
-    </section>
     <section style="font-size: 258.4%; padding: 20px 263.1px;" id="api-conclusion">
       <h1>Server API</h1>
       <ul>
@@ -923,55 +553,9 @@ otherwise({<span class="symbol">redirectTo:</span> <span class="string">'/tasks'
       <h1>Components</h1>
       <ul>
         <li>No explicit notion of component</li>
+        <li>Components can just be custom views</li>
         <li>Expose Backbone Views</li>
         <li>Manage their attachment to the DOM manually</li>
-      </ul>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="components-ember" class="ember">
-      <h1>Components</h1>
-      <ul>
-        <li>Components are just views</li>
-        <li>Nesting via the view helper</li>
-        <li>Built-in components</li>
-        <li>Dedicated handlebars plugins</li>
-      </ul>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="components-ember-code" class="ember">
-<pre><code class="xml">
-<span class="tag">&lt;<span class="title">form</span> {{<span class="attribute">action</span> <span class="attribute">save</span> <span class="attribute">model</span> <span class="attribute">on</span>=<span class="value">"submit"</span>}}&gt;</span>
-  <span class="tag">&lt;<span class="title">div</span>&gt;</span>
-    <strong>{{input value="title" placeholder="Title"}}</strong>
-  <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
-  <span class="tag">&lt;<span class="title">div</span>&gt;</span>
-    <strong>{{textarea value="description" placeholder="Description"}}</strong>
-  <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
-  ...
-<span class="tag">&lt;/<span class="title">form</span>&gt;</span>
-</code></pre>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="components-angular" class="angular">
-      <h1>Directives</h1>
-      <ul>
-        <li>Custom HTML elements!</li>
-        <li>
-          Powerful but complex notions:
-          <ul>
-            <li>Scope: @ = &amp;</li>
-            <li>Require: ? ^</li>
-            <li>Restrict: E A C M</li>
-            <li>Transclude</li>
-          </ul>
-        </li>
-        <li>Lot of included directives</li>
-        <li>Enhancing standard HTML elements</li>
-      </ul>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="components-conclusion">
-      <h1>Components</h1>
-      <ul>
-        <li class="backbone">Components can just be custom views</li>
-        <li class="ember">Nested view helper and Handlebars plugins</li>
-        <li class="angular">Directives: a way to teach HTML new tricks</li>
       </ul>
     </section>
 
@@ -1059,6 +643,8 @@ otherwise({<span class="symbol">redirectTo:</span> <span class="string">'/tasks'
       <ul>
         <li><i class="icon-thumbs-down"></i> Few features</li>
         <li><i class="icon-thumbs-down"></i> A lot of manual work to take care of</li>
+        <li><i class="icon-thumbs-down"></i> Everything is possible but manual</li>
+        <li><i class="icon-thumbs-down"></i> Care must be given to memory management!</li>
       </ul>
     </section>
     <section style="font-size: 258.4%; padding: 20px 263.1px;" id="conclusion-ember" class="ember">

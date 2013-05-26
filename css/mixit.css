@@ -16,6 +16,12 @@ h1 {
   color: #FFF;
   border: none;
 }
+.backbone.desventajas {
+  background: #DD1B16;
+  color: #F2F2F2;
+  /*color: #FFF;*/
+  border: none;
+}
 .ember {
   border-left: solid 20px orange;
 }
