@@ -7,7 +7,7 @@
     <script type="text/javascript" src="lib/jquery-1.9.1.js"></script>
     <script type="text/javascript" src="lib/underscore-1.4.4.js"></script>
     <script type="text/javascript" src="lib/backbone-1.0.0.js"></script>
-    <script type="text/javascript" src="lib/handlebars-1.0.0.beta.6.js"></script>
+    <script type="text/javascript" src="lib/handlebars-1.0.0-rc.4.js"></script>
   </head>
 
   <body>
@@ -64,6 +64,16 @@ $(function() {
   });
 
   counterView.render();
+
+var Task = Backbone.Model.extend({
+  defaults: {
+    title: 'New Task'
+  }
+});
+
+var task = new Task({ title: 'This is a task' });
+
+console.log(task.toJSON());
 
 });
 </script>
