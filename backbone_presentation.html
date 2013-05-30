@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <title>Backbone, Ember et Angular sont dans un bateau... Mix-IT 2013</title>
+  <title>Backbone para nardoz</title>
   <meta charset="utf-8">
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/font-awesome.css">
@@ -14,7 +14,7 @@
   <div style="transition-duration: 1s;" class="presentation">
 
     <section style="font-size: 258.4%; padding: 20px 263.1px;" id="backbone-for-nardoz" class="backbone title">
-      <h1>Backbone for Nardoz... <aside>
+      <h1>Backbone para Nardoz... <aside>
         <i class="icon-code"></i> { who: 'nardoz', where: 'BA', when: '2013-05-30' }</aside></h1>
     </section>
 
@@ -184,7 +184,7 @@
         <br />
         <li><i class="icon-star"></i>       <strong>Más de una forma</strong> de hacer las cosas</li>
         <li><i class="icon-ok"></i>         Te permite amar el stack <strong>a tu gusto</strong></li>
-        <li><i class="icon-heart"></i>      Nadie toma las deciciones por <strong>vos</strong></li>
+        <li><i class="icon-heart"></i>      Nadie toma las decisiones por <strong>vos</strong></li>
         <li><i class="icon-smile"></i>      Te brinda la <strong>estructura</strong> básica de tu proyecto</li>
         <li><i class="icon-ok-circle"></i>  Vas a aprender <strong>Javascript</strong> en serio</li>
       </ul>
@@ -197,7 +197,7 @@
         <li><i class="icon-star-half"></i>          <strong>No hay una forma</strong> de hacer las cosas</li>
         <li><i class="icon-remove"></i>             <strong>Tenés</strong> que amar el stack a tu gusto</li>
         <li><i class="icon-warning-sign"></i>       <strong>Nadie</strong> toma las decisiones por vos</li>
-        <li><i class="icon-frown"></i>              Te brinda <strong>tan sólo</strong> la estructura basica de tu proyecto</li>
+        <li><i class="icon-frown"></i>              Te brinda <strong>tan sólo</strong> la estructura básica de tu proyecto</li>
         <li><i class="icon-ban-circle"></i>         Vas a <strong>tener</strong> que aprender Javascript en serio</li>
       </ul>
     </section>
@@ -212,19 +212,16 @@
       <ul>
         <li>Usado internament por Backbone</li>
         <li>Basado en _.extend</li>
-        <li>Permite usar herencia de clases den Javascript</li>
+        <li>Permite usar herencia de clases en Javascript</li>
       </ul>
     </section>
 
     <section style="font-size: 258.4%; padding: 20px 263.1px;" id="object-model-backbone-code" class="backbone">
       <pre>
         <code class="javascript">
-          <span class="keyword">var</span> HandlebarsView = <strong>Backbone.View.extend</strong>({
+      <span class="keyword">var</span> HandlebarsView = <strong>Backbone.View.extend</strong>({
         render: <span class="keyword">function</span>() {
-          <span class="keyword">if</span> (!_.isFunction(<span class="keyword">this</span>.template)) {
-            <span class="keyword">this</span>.tmpl = Handlebars.compile(<span class="keyword">this</span>.tmpl);
-          }
-          <span class="keyword">this</span>.$el.html(<span class="keyword">this</span>.tmpl(<span class="keyword">this</span>.model||<span class="keyword">this</span>.collection||{}));
+          <span class="keyword">this</span>.$el.html(<span class="keyword">this</span>.template(<span class="keyword">this</span>.model<span class="keyword">));
           <span class="keyword">return</span> <span class="keyword">this</span>;
         }
       });
@@ -232,7 +229,7 @@
       <span class="keyword">var</span> TaskView = <strong>HandlebarsView.extend</strong>({
         render: <span class="keyword">function</span>() {
           console.log(<span class="string">'Rendering...'</span>);
-          <strong>TaskView.__super__.render.apply(<span class="keyword">this</span>);</strong>
+          <span class="keyword">return</span> <strong>Backbone.View.prototype.render.apply(<span class="keyword">this</span>);</strong>
         }
       });
       </code>
@@ -252,14 +249,14 @@
     <section style="font-size: 258.4%; padding: 20px 263.1px;" id="model-backbone" class="backbone">
       <h1>Model</h1>
       <ul>
-        <li>Events</li>
+        <li>Eventos</li>
         <li>Sync</li>
-        <li>Validation?!</li>
+        <li>Validaciones</li>
       </ul>
     </section>
 
     <section style="font-size: 258.4%; padding: 20px 263.1px;" id="model-backbone-code" class="backbone">
-<pre><code class="cs"><span class="keyword">var</span> Task  = Backbone.Model.extend({
+<pre><code class="cs"><span class="keyword">var</span> Task = Backbone.Model.extend({
   defaults: {
     title: <span class="string">'New Task'</span>
   }
@@ -269,24 +266,19 @@
     <section style="font-size: 258.4%; padding: 20px 263.1px;" id="view-backbone" class="backbone">
       <h1>View</h1>
       <ul>
-        <li>A portion of DOM</li>
-        <li>Event delegation</li>
-        <li>Manage a model or collection</li>
-        <li>
-<pre><code class="javascript">render: <span class="keyword">function</span>() {
-  <span class="keyword">return</span> <span class="keyword">this</span>;
-}
-</code></pre>
-        </li>
+        <li>Vinculada a un elemento DOM y a un model (o collection)</li>
+        <li>Escucha el DOM y responde a sus eventos</li>
+        <li>Escucha el model y actualiza el DOM</li>
+        <li>Utiliza un template para actualizar el DOM</li>
       </ul>
     </section>
     <section style="font-size: 258.4%; padding: 20px 263.1px;" id="view-backbone-code" class="backbone">
 <pre><code class="javascript"><span class="keyword">var</span> <strong>HandlebarsView</strong> = Backbone.View.extend({
   render: <span class="keyword">function</span>() {
     <span class="keyword">if</span> (!_.isFunction(<span class="keyword">this</span>.template)) {
-      <span class="keyword">this</span>.tmpl = Handlebars.compile(<span class="keyword">this</span>.tmpl);
+      <span class="keyword">this</span>.template = Handlebars.compile(<span class="keyword">this</span>.template);
     }
-    <strong><span class="keyword">this</span>.$el.html(<span class="keyword">this</span>.tmpl(<span class="keyword">this</span>.model||<span class="keyword">this</span>.collection||{}));</strong>
+    <strong><span class="keyword">this</span>.$el.html(<span class="keyword">this</span>.template(<span class="keyword">this</span>.model));</strong>
     <span class="keyword">return</span> <span class="keyword">this</span>;
   }
 });
@@ -295,46 +287,30 @@
     <section style="font-size: 258.4%; padding: 20px 263.1px;" id="controller-backbone" class="backbone">
       <h1>Controller</h1>
       <ul>
-        <li>No explicit controller</li>
-        <li>Route actions &amp; views do the job</li>
+        <li>¡No existen controllers en Backbone!</li>
+        <li>...pero tampoco están prohibidos</li>
+        <li>depende de vos... (para variar)</li>
       </ul>
     </section>
     <section style="font-size: 258.4%; padding: 20px 263.1px;" id="controller-backbone-code" class="backbone">
 <pre><code class="javascript"><span class="keyword">var</span> TaskFormView = HandlebarsView.extend({
-  template: $(<span class="string">'#task-form-template'</span>).html(),
   events: {
     <span class="string">'submit form'</span>: <span class="string">'save'</span>
   },
   save: <span class="keyword">function</span>() {
     <strong><span class="keyword">this</span>.model.save</strong>({
-      title: <span class="keyword">this</span>.$(<span class="string">'#title'</span>).val(),
-      description: <span class="keyword">this</span>.$(<span class="string">'#description'</span>).val()
-    }, {
-      success: _.bind(<span class="keyword">function</span>() {
-        Backbone.history.navigate(<span class="string">"#task/"</span> +
-          <span class="keyword">this</span>.model.get(<span class="string">'id'</span>), <span class="literal">true</span>);
-      }, <span class="keyword">this</span>)
+      title       : <span class="keyword">this</span>.$(<span class="string">'#title'</span>).val(),
+      description : <span class="keyword">this</span>.$(<span class="string">'#description'</span>).val()
     });
-    <span class="keyword">return</span> <span class="literal">false</span>;
+    <span class="keyword">return</span> <span class="literal">this</span>;
   }
 });
 </code></pre>
+
     </section>
 
-    <!-- Binding -->
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="binding">
-      <h1>Binding</h1>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="binding-backbone" class="backbone">
-      <h1>Binding</h1>
-      <ul>
-        <li>No automatic binding</li>
-        <li>Wiring through events</li>
-        <li>Fine grained control with manual wiring</li>
-      </ul>
-    </section>
     <section style="font-size: 258.4%; padding: 20px 263.1px;" id="binding-backbone-model-events" class="backbone">
-      <h1>Model Events</h1>
+      <h1>Eventos de los modelos</h1>
       <ul>
         <li>change</li>
         <li>change:[attribute]</li>
@@ -343,7 +319,7 @@
       </ul>
     </section>
     <section style="font-size: 258.4%; padding: 20px 263.1px;" id="binding-backbone-collection-events" class="backbone">
-      <h1>Collection Events</h1>
+      <h1>Eventos de las colecciones</h1>
       <ul>
         <li>add</li>
         <li>remove</li>
@@ -378,27 +354,22 @@
     </section>
 
     <!-- Routing -->
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="routing">
-      <h1>Routing</h1>
-    </section>
     <section style="font-size: 258.4%; padding: 20px 263.1px;" id="routing-intro">
-      <h1>Routing &amp; Deep Linking</h1>
+      <h1>Rutas</h1>
       <p>
-        Associate an URL to a particular application state<br>
-        Managing Single Page Application layouts?
+        Permite asociar un URL a un estado particular de nuestra aplicación<br>
       </p>
       <dl>
         <dt>http://example.com/#/tasks/1</dt>
-        <dd>See details of the task with id 1</dd>
+        <dd>Ver el detalle de la tarea número 1</dd>
       </dl>
     </section>
     <section style="font-size: 258.4%; padding: 20px 263.1px;" id="routing-backbone" class="backbone">
       <h1>Routing</h1>
       <ul>
         <li>Backbone.Router &amp; Backbone.History</li>
-        <li>Simple pushState support</li>
-        <li>A route <i class="icon-arrow-right"></i> A callback</li>
-        <li>Manual layout and memory management</li>
+        <li>Soporte básico de pushState</li>
+        <li>Por cada ruta <i class="icon-arrow-right"></i> un callback</li>
       </ul>
     </section>
     <section style="font-size: 258.4%; padding: 20px 263.1px;" id="routing-backbone-code-1" class="backbone">
@@ -408,91 +379,30 @@
     <span class="string">'tasks'</span>:           <span class="string">'list'</span>,
     <span class="string">'task/new'</span>:        <span class="string">'create'</span>,
     <span class="string">'task/:id'</span>:        <span class="string">'show'</span>,
-    <span class="string">'task/:id/edit'</span>:   <span class="string">'edit'</span>,
-    <span class="string">'task/:id/remove'</span>: <span class="string">'remove'</span>
-  },
-
-  <span class="comment">// ....</span>
+  }
 });
-</code></pre>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="routing-backbone-code-2" class="backbone">
-      <pre><code class="javascript">show: <span class="keyword">function</span>(id) {
+
+<span class="comment">// ....</span>
+
+show: <span class="keyword">function</span>(id) {
   <span class="keyword">this</span>.current(TaskDetailsView, id);
 }
 </code></pre>
     </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="routing-backbone-code-3" class="backbone">
-<pre><code class="javascript">current: <span class="keyword">function</span>(viewClass, task) {
-  <span class="keyword">if</span> (!(task <span class="keyword">instanceof</span> Task)) {
-    <span class="keyword">var</span> id = task;
-    <strong>task = <span class="keyword">this</span>.tasks.get(id);</strong>
-    <span class="keyword">if</span> (!task) {
-      alert(<span class="string">'The task with id '</span> + id + <span class="string">' does not exist.'</span>);
-      <span class="keyword">return</span> <span class="keyword">this</span>.navigate(<span class="string">'#tasks'</span>, <span class="literal">true</span>);
-    }
-  }
 
-  <strong><span class="keyword">this</span>.list();</strong>
-  <span class="keyword">this</span>.active(task);
-
-  <strong><span class="keyword">this</span>.currentView = <span class="keyword">new</span> viewClass({model: task});</strong>
-  <strong>$(<span class="string">'.task'</span>).html(<span class="keyword">this</span>.currentView.render().el);</strong>
-}
-</code></pre>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="routing-backbone-code-4" class="backbone">
-<pre><code class="php"><span class="keyword">list</span>: function() {
-  <span class="keyword">if</span> (!<span class="keyword">this</span>.tasksView||<span class="keyword">this</span>.tasksView.<span class="variable">$el</span>.<span class="keyword">parent</span>().size()===<span class="number">0</span>) {
-    <strong><span class="keyword">this</span>.tasksView = <span class="keyword">new</span> TasksView({collection: <span class="keyword">this</span>.tasks});</strong>
-    <strong>$(<span class="string">'#app'</span>).html(<span class="keyword">this</span>.tasksView.render().el);</strong>
-  }
-
-  <span class="keyword">if</span> (<span class="keyword">this</span>.currentView) {
-    <strong><span class="keyword">this</span>.currentView.remove();</strong>
-  }
-
-  <span class="keyword">this</span>.active();
-}
-</code></pre>
-    </section>
-
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="routing-conclusion">
-      <h1>Routing</h1>
-      <ul>
-        <li class="backbone">Everything is possible but manual</li>
-        <li class="backbone">Care must be given to memory management!</li>
-        <li class="ember">A smart routing system for SPA</li>
-        <li class="angular">The router needs improvements</li>
-      </ul>
-    </section>
-
-    <!-- Server API -->
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="api">
-      <h1>Server API</h1>
-    </section>
-
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="api-intro">
-      <h1>Server API</h1>
-      <ul>
-        <li>RESTful API</li>
-        <li>Flexibility</li>
-        <li>Ease of implementation</li>
-      </ul>
-    </section>
     <section style="font-size: 258.4%; padding: 20px 263.1px;" id="api-backbone" class="backbone">
       <h1>Backbone Sync</h1>
       <ul>
-        <li>Based on $.ajax</li>
-        <li>Sane defaults for a RESTful API</li>
-        <li>Easily customizable</li>
+        <li>Basado en jquery ($.ajax)</li>
+        <li>Preparado para una API rest</li>
+        <li>Muy simple y fácil de personalizar</li>
       </ul>
     </section>
     <section style="font-size: 258.4%; padding: 20px 263.1px;" id="api-backbone-code-1" class="backbone">
 <pre><code class="javascript"><span class="keyword">var</span> Tasks = Backbone.Collection.extend({
   model: Task,
-  <strong>url:   <span class="string">'http://localhost:3000/tasks'</span>,</strong>
-  parse: <span class="keyword">function</span>(response) {
+  <strong>url     : <span class="string">'http://localhost:3000/tasks'</span>,</strong>
+  parse   : <span class="keyword">function</span>(response) {
     <span class="keyword">return</span> response.tasks;
   }
 });
@@ -501,8 +411,8 @@
     <section style="font-size: 258.4%; padding: 20px 263.1px;" id="api-backbone-code-2" class="backbone">
 <pre><code class="javascript">save: <span class="keyword">function</span>() {
   <strong><span class="keyword">this</span>.model.save</strong>({
-    title: <span class="keyword">this</span>.$(<span class="string">'#title'</span>).val(),
-    description: <span class="keyword">this</span>.$(<span class="string">'#description'</span>).val()
+    title       : <span class="keyword">this</span>.$(<span class="string">'#title'</span>).val(),
+    description : <span class="keyword">this</span>.$(<span class="string">'#description'</span>).val()
   }, {
     success: _.bind(<span class="keyword">function</span>() {
       Backbone.history.navigate(<span class="string">"#task/"</span> + <span class="keyword">this</span>.model.get(<span class="string">'id'</span>), <span class="literal">true</span>);
@@ -512,90 +422,27 @@
 }
 </code></pre>
     </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="api-conclusion">
-      <h1>Server API</h1>
-      <ul>
-        <li class="backbone">Easily customizable</li>
-        <li class="ember">Powerful but not yet mature (promises)</li>
-        <li class="angular">Testability: takes advantage of DI</li>
-      </ul>
-    </section>
-
-    <!-- Components -->
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="components">
-      <h1>Components</h1>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="components-intro">
-      <h1>Components</h1>
-      <ul>
-        <li>Writing reusable components</li>
-        <li>Included components</li>
-      </ul>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="components-backbone" class="backbone">
-      <h1>Components</h1>
-      <ul>
-        <li>No explicit notion of component</li>
-        <li>Components can just be custom views</li>
-        <li>Expose Backbone Views</li>
-        <li>Manage their attachment to the DOM manually</li>
-      </ul>
-    </section>
-
-    <!-- Testability -->
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="testability">
-      <h1>Testability</h1>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="testability-backbone" class="backbone">
-      <h1>Testability</h1>
-      <ul>
-        <li>Everything is explicit</li>
-        <li>Control helps testability</li>
-        <li>Lot of manual code =&gt; lot of tests</li>
-      </ul>
-    </section>
-
-    <!-- Ecosystem -->
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="ecosystem">
-      <h1>Ecosystem</h1>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="ecosystem-backbone" class="backbone">
-      <h1>Ecosystem</h1>
-      <ul>
-        <li>Easy to learn
-        </li><li>Easy to get familiar with its codebase</li>
-        <li>The most widespread</li>
-        <li>More than one way to do things</li>
-      </ul>
-    </section>
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="ecosystem-backbone-frameworks" class="backbone">
-      <h1>A backbone</h1>
-      <ul>
-        <li>Spine</li>
-        <li>Thorax</li>
-        <li>Marionette.js</li>
-        <li>RESThub Backbone</li>
-      </ul>
-    </section>
 
     <section style="font-size: 258.4%; padding: 20px 263.1px;" id="conclusion-backbone" class="backbone">
       <h1>Conclusiones</h1>
       <ul>
-        <li><i class="icon-thumbs-up"></i> Great foundation</li>
-        <li><i class="icon-thumbs-up"></i> Control everything</li>
+        <li><i class="icon-thumbs-up"></i> Buen punto de partida</li>
+        <li><i class="icon-thumbs-up"></i> Permite tener control absoluto</li>
+        <li><i class="icon-thumbs-up"></i> Código muy claro y amigable</li>
+        <li><i class="icon-thumbs-up"></i> Cero magia</li>
       </ul>
       <ul>
-        <li><i class="icon-thumbs-down"></i> Few features</li>
-        <li><i class="icon-thumbs-down"></i> A lot of manual work to take care of</li>
-        <li><i class="icon-thumbs-down"></i> Everything is possible but manual</li>
-        <li><i class="icon-thumbs-down"></i> Care must be given to memory management!</li>
+        <li><i class="icon-thumbs-down"></i> Tan sólo un punto de partida</li>
+        <li><i class="icon-thumbs-down"></i> Hay que tener ganás de escribir código</li>
+        <li><i class="icon-thumbs-down"></i> Todo es posible, pero de manera manual</li>
+        <li><i class="icon-thumbs-down"></i> ¡Hay que tener cuidado con el manejo de memoria!</li>
       </ul>
     </section>
 
     <section style="font-size: 258.4%; padding: 20px 263.1px;" id="backbone-bootstrap" class="backbone">
       <h1>BackboneBootstrap</h1>
       <p>
-        Framework hecho con Backbone pensado para generar ABM complejos de manera delclarativa
+        Framework hecho con Backbone pensado para generar ABMs complejos de manera declarativa
       </p>
     </section>
 
@@ -621,7 +468,7 @@
         <li>Backbone puede ser tan simple o complejo como uno quiera</li>
         <li>La curva de aprendizaje es alta, en buena parte debido a javascript</li>
         <li>Para proyectos grandes es necesario RequireJS o algo similar</li>
-        <li>Es muy fácil que el proyecto de vaya de las mano, js es difícil de estrucuturar</li>
+        <li>Es muy fácil que el proyecto de vaya de las manos, js es difícil de estructurar</li>
         <li>Desacoplar componentes mediante eventos</li>
         <li>Abandonar Rails (y similares) y adoptar la filosofía Backbone</li>
         <li>Cada elemento que reciba eventos y mantenga estado es una view aparte</li>
