@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Backbone - views</title>
+    <script type="text/javascript" src="lib/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="lib/underscore-1.4.4.js"></script>
+    <script type="text/javascript" src="lib/backbone-1.0.0.js"></script>
+    <script type="text/javascript" src="lib/handlebars-1.0.0.beta.6.js"></script>
+  </head>
+
+  <body>
+    <div id='container' />
+  </body>
+
+</html>
+
+<script type='text/template' id='counterTemplate'>
+  <h1>Hola, el contador ahora vale {{ count }}</h1> <br />
+  <input type='button' value='+ 1' />
+</script>
+
+<script type="text/javascript">
+
+$(function() {
+
+  var CounterModel = Backbone.Model.extend({
+
+    defaults: { count: 0 },
+
+    plusOne: function() {
+      this.set('count', this.get('count') + 1);
+    }
+
+  });
+
+  var CounterView = Backbone.View.extend({
+
+    initialize: function(options) {
+      this.template = Handlebars.compile(options.template);
+      this.listenTo(this.model, 'change', this.render);
+    },
+
+    render: function() {
+      this.$el.html(this.template(this.model.toJSON()));
+      return this;
+    },
+
+    events: { 'click input' : 'plusOne' },
+
+    plusOne: function() {
+      this.model.plusOne();
+    }
+
+  });
+
+  var counter = new CounterModel();
+
+  var counterView = new CounterView({
+    el       : '#container',
+    model    : counter,
+    template : $('#counterTemplate').html()
+  });
+
+  counterView.render();
+
+});
+</script>
