@@ -17,12 +17,12 @@ h1 {
 }
 
 
-
-
 .backbone {
   border-left: solid 20px #0071B5;
-  background: #0071B5;
-  color: #FFF;
+  /*background: #0071B5;*/
+  background: #EEE;
+  /*color: #FFF;*/
+  color: #434343;
   border: none;
 }
 .backbone.title {
