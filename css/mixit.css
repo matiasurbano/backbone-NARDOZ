@@ -5,6 +5,23 @@ section {
 h1 {
   font-weight: 300;
 }
+
+ ul.items li{
+  height: 70px;
+ } 
+
+ ul.items2 li{
+  padding:12px;
+ } 
+
+ ul.items3 li{
+  padding:5px;
+ } 
+
+ ul.items3 li i {
+  padding:5px;
+ } 
+
 .sponsors {
   background: white;
   color: #1F2222;
@@ -52,6 +69,18 @@ h1 {
   color: #F2F2F2;
   border: none;
 }
+
+.sublimeBG{
+  background-color: #272822;
+  color: #91c62c;
+}
+
+.sublimeBG h1 {
+  color: white;
+}
+
+
+
 li.backbone,
 li.ember,
 li.angular {

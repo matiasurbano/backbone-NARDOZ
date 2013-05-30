@@ -47,7 +47,7 @@
     </section>
 
     <section style="font-size: 258.4%; padding: 20px 263.1px;" id="backbone-overview" class="backbone title">
-      <ul>
+      <ul class="items">
         <li><i class="icon-user"></i>     Jeremy Ashkenas</li>
         <li><i class="icon-money"></i>    DocumentCloud</li>
         <li><i class="icon-suitcase"></i> jQuery/Zepto &amp; Underscore.js</li>
@@ -59,7 +59,7 @@
     </section>
 
     <section style="font-size: 258.4%; padding: 20px 263.1px;" id="backbone-author" class="backbone title">
-      <ul>
+      <ul class="items">
         <li><i class="icon-user"></i>     ¿Quién es Jeremy Ashkenas?</li>
         <br />
         <li>
@@ -88,20 +88,24 @@
       </ul>
     </section>
 
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="backbone-what-is" class="backbone title">
+    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="backbone-what-is" class="sublimeBG">
       <h1>
         Pero en definitiva...<br />
         ¿<strong>QUÉ ES BACKBONE</strong>?
       </h1>
     </section>
 
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="backbone-loc" class="ember title">
+    <section style="font-size: 258.4%; padding: 20px 263.1px; background-image: url('img/code-backbone.png')" id="backbone-loc" class="sublimeBG">
       <h1>
-        1.500 líneas de código
-        (incluye comentarios)
+          <code class="javascript">
+            <br>
+            <span style="font-size: 40px; font-weight: bold;">{ 1.500 líneas de código }</span>
+            <br>
+            <span style="font-size: 25px; color: white;">// incluyendo comentarios</span>
+            <br>
+          </code> 
+
       </h1>
-      #TODO: incluir imagen codigo
-      #TODO: incluye comentarios en letra mas chica
     </section>
 
     <section style="font-size: 258.4%; padding: 20px 263.1px;" id="backbone-opinan-los-expertos" class="backbone title">
@@ -117,8 +121,12 @@
       </p>
     </section>
 
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="backbone-warnings" class="backbone title">
-      <ul style="font-size: 80%">
+    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="backbone-warnings-title" class="sublime">
+      <h1><strong>NO</strong> toques backbone si...</h1>
+    </section>
+
+    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="backbone-warnings" class="ember">
+      <ul class="items2" style="font-size: 80%">
         <li><i class="icon-warning-sign"></i>     <strong>NO</strong> toques backbone si...</li>
         <br />
         <li><i class="icon-chevron-sign-right"></i>   <strong>console.log</strong>(‘es tu única manera de debuggear en JS’);</li>
@@ -129,8 +137,8 @@
       </ul>
     </section>
 
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="backbone-more-warnings" class="backbone title">
-      <ul style="font-size: 80%">
+    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="backbone-more-warnings" class="ember">
+      <ul class="items2" style="font-size: 80%">
         <li><i class="icon-warning-sign"></i>     <strong>TAMPOCO</strong> toques backbone si...</li>
         <br />
         <li><i class="icon-chevron-sign-right"></i>   te gusta que haya <strong>una y solo una</strong> manera de hacer las cosas</li>
@@ -141,10 +149,12 @@
       </ul>
     </section>
 
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="backbone-abc" class="backbone title">
-      <ul style="font-size: 80%">
-        <li><i class="icon-chevron-sign-right"></i>     El ABC de Backbone (prerequisitos)</li>
-        <br />
+    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="backbone-abc-title" class="sublime">
+      <h1><strong>ABC</strong> de Backbone</h1>
+    </section>
+
+    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="backbone-abc" class="angular">
+      <ul class="items2" style="font-size: 80%">
         <li><i class="icon-chevron-sign-right"></i>     Sólidos Conocimientos de Javascript, a saber:
           <ul>
             <li><i class="icon-chevron-sign-right"></i>     Herencia basada en prototipos</li>
@@ -159,9 +169,9 @@
       </ul>
     </section>
 
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="backbone-tools" class="backbone title">
-      <ul style="font-size: 80%">
-        <li><i class="icon-chevron-sign-right"></i>     Herramientas para completar tu stack</li>
+    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="backbone-tools" class="angular">
+      <ul  class="items2" style="font-size: 80%">
+        <li><strong>Herramientas para completar tu stack</strong></li>
         <br />
         <li><i class="icon-chevron-sign-right"></i>
           <a href='http://underscorejs.org/'>Underscore</a> o
@@ -185,7 +195,7 @@
 
     <section style="font-size: 258.4%; padding: 20px 263.1px;" id="object-model-backbone" class="backbone title">
       <h1>Modelo de objetos</h1>
-      <ul>
+      <ul class="items">
         <li>Usado internamente por Backbone</li>
         <li>Basado en _.extend</li>
         <li>Permite usar herencia de clases en Javascript</li>
@@ -215,7 +225,7 @@
     <!-- MVwhatever -->
     <section style="font-size: 258.4%; padding: 20px 263.1px;" id="mvX-intro" class="backbone title">
       <h1>M-V-loquevenga...</h1>
-      <ul>
+      <ul class="items">
         <li>Model</li>
         <li>View</li>
         <li><i class="icon-star-empty"></i></li>
@@ -224,7 +234,7 @@
 
     <section style="font-size: 258.4%; padding: 20px 263.1px;" id="model-backbone" class="backbone title">
       <h1>Model</h1>
-      <ul>
+      <ul class="items">
         <li>Eventos</li>
         <li>Sync</li>
         <li>Validaciones</li>
@@ -245,7 +255,7 @@
 
     <section style="font-size: 258.4%; padding: 20px 263.1px;" id="view-backbone" class="backbone title">
       <h1>View</h1>
-      <ul>
+      <ul class="items2">
         <li>Vinculada a un elemento DOM y a un model (o collection)</li>
         <li>Escucha el DOM y responde a sus eventos</li>
         <li>Escucha el model y actualiza el DOM</li>
@@ -266,7 +276,7 @@
     </section>
     <section style="font-size: 258.4%; padding: 20px 263.1px;" id="controller-backbone" class="backbone title">
       <h1>Controller</h1>
-      <ul>
+      <ul class="items">
         <li>¡No existen controllers en Backbone!</li>
         <li>...pero tampoco están prohibidos</li>
         <li>depende de vos... (para variar)</li>
@@ -287,11 +297,13 @@
 });
 </code></pre>
 
+
+
     </section>
 
     <section style="font-size: 258.4%; padding: 20px 263.1px;" id="binding-backbone-model-events" class="backbone title">
       <h1>Eventos de los modelos</h1>
-      <ul>
+      <ul class="items">
         <li>change</li>
         <li>change:[attribute]</li>
         <li>destroy</li>
@@ -301,7 +313,7 @@
 
     <section style="font-size: 258.4%; padding: 20px 263.1px;" id="binding-backbone-collection-events" class="backbone title">
       <h1>Eventos de las colecciones</h1>
-      <ul>
+      <ul class="items">
         <li>add</li>
         <li>remove</li>
         <li>reset</li>
@@ -347,7 +359,7 @@
     </section>
     <section style="font-size: 258.4%; padding: 20px 263.1px;" id="routing-backbone" class="backbone title">
       <h1>Routing</h1>
-      <ul>
+      <ul class="items">
         <li>Backbone.Router &amp; Backbone.History</li>
         <li>Soporte básico de pushState</li>
         <li>Por cada ruta <i class="icon-arrow-right"></i> un callback</li>
@@ -373,7 +385,7 @@ show: <span class="keyword">function</span>(id) {
 
     <section style="font-size: 258.4%; padding: 20px 263.1px;" id="api-backbone" class="backbone title">
       <h1>Backbone Sync</h1>
-      <ul>
+      <ul class="items">
         <li>Basado en jquery ($.ajax)</li>
         <li>Preparado para una API rest</li>
         <li>Muy simple y fácil de personalizar</li>
@@ -413,7 +425,7 @@ show: <span class="keyword">function</span>(id) {
 
     <section style="font-size: 258.4%; padding: 20px 263.1px;" id="backbone-bootstrap-features" class="ember title">
       <h1>Features</h1>
-      <ul>
+      <ul class="items2" style="font-size:80%;">
         <li>Esquema de datos rico</li>
         <li>Definición de formularios de manera declarativa</li>
         <li>Colecciones con soporte para paginación y ordenamiento</li>
@@ -422,9 +434,9 @@ show: <span class="keyword">function</span>(id) {
       </ul>
     </section>
 
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="backbone-bootstrap-features2" class="ember title">
+    <section style="font-size: 170%; padding: 20px 263.1px;" id="backbone-bootstrap-features2" class="ember title">
       <h1>Más features</h1>
-      <ul>
+      <ul class="items2" style="font-size:80%;">
         <li>Generación de formularios maestro-detalle</li>
         <li>Menúes y permisos generados a partir del usuario</li>
         <li>Soporte para combos y Select2Combos a partir de Collections</li>
@@ -433,21 +445,21 @@ show: <span class="keyword">function</span>(id) {
       </ul>
     </section>
 
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="backbone-bootstrap-lecciones" class="backbone title">
+    <section style="font-size: 170%; padding: 20px 263.1px;" id="backbone-bootstrap-lecciones" class="backbone title">
       <h1>Lecciones aprendidas</h1>
-      <ul style="font-size: 75%">
-        <li>Backbone puede ser tan simple o complejo como uno quiera</li>
-        <li>La curva de aprendizaje es alta, en buena parte debido a javascript</li>
-        <li>Para proyectos grandes es necesario RequireJS o algo similar</li>
-        <li>Es muy fácil que el proyecto se vaya de las manos, js es difícil de estructurar</li>
-        <li>Desacoplar componentes mediante eventos</li>
-        <li>Cada elemento que reciba eventos y mantenga estado es una view aparte</li>
-        <li>Abandonar Rails (y similares) y adoptar la filosofía Backbone</li>
+      <ul class="items2" style="font-size:55%;">
+        <li><i class="icon-star"></i> Backbone puede ser tan simple o complejo como uno quiera</li>
+        <li><i class="icon-star"></i> La curva de aprendizaje es alta, en buena parte debido a javascript</li>
+        <li><i class="icon-star"></i> Para proyectos grandes es necesario RequireJS o algo similar</li>
+        <li><i class="icon-star"></i> Es muy fácil que el proyecto se vaya de las manos, js es difícil de estructurar</li>
+        <li><i class="icon-star"></i> Desacoplar componentes mediante eventos</li>
+        <li><i class="icon-star"></i> Cada elemento que reciba eventos y mantenga estado es una view aparte</li>
+        <li><i class="icon-star"></i> Abandonar Rails (y similares) y adoptar la filosofía Backbone</li>
       </ul>
     </section>
 
-    <section style="font-size: 258.4%; padding: 20px 263.1px;" id="backbone-ventajas" class="backbone title ventajas">
-      <ul style="font-size: 80%">
+    <section style="font-size: 170%; padding: 20px 263.1px;" id="backbone-ventajas" class="backbone title">
+      <ul class="items2" style="font-size: 70%">
         <li><i class="icon-thumbs-up"></i> Conclusiones - Ventajas</li>
         <br />
         <li><i class="icon-star"></i>       <strong>Más de una forma</strong> de hacer las cosas</li>
@@ -459,7 +471,7 @@ show: <span class="keyword">function</span>(id) {
     </section>
 
     <section style="font-size: 258.4%; padding: 20px 263.1px;" id="backbone-desventajas" class="backbone desventajas">
-      <ul style="font-size: 80%">
+      <ul class="items" style="font-size: 80%">
         <li><i class="icon-thumbs-down"></i> Conclusiones - <strong>DES</strong>ventajas</li>
         <br />
         <li><i class="icon-star-half"></i>          <strong>No hay una forma</strong> de hacer las cosas</li>
@@ -471,6 +483,38 @@ show: <span class="keyword">function</span>(id) {
     </section>
 
 
+    <section style="font-size: 258.4%; padding: 10px 263.1px;" id="recursos">
+      <h8>Recursos</h8>
+      <ul  class="items3" style="font-size: 20px;">
+        <li><i class="icon-chevron-sign-right"></i><strong>Documentacion de backbone</strong><br>
+        http://documentcloud.github.io/backbone/</li>
+
+        <li><i class="icon-chevron-sign-right"></i><strong>Codigo fuente anotado</strong><br>
+        http://documentcloud.github.io/backbone/docs/backbone.html</li>
+
+        <li><i class="icon-chevron-sign-right"></i><strong>Developing Backbone.js Applications - By Addy Osmani</strong><br>
+        http://addyosmani.github.io/backbone-fundamentals/</li>
+
+        <li><i class="icon-chevron-sign-right"></i><strong>Backbone patterns</strong><br>
+        http://ricostacruz.com/backbone-patterns/</li>
+
+        <li><i class="icon-chevron-sign-right"></i><strong>Recipes with Backbone</strong><br>
+        http://recipeswithbackbone.com/</li>
+
+        <li><i class="icon-chevron-sign-right"></i><strong>Backbone Tutorials</strong><br>
+        https://leanpub.com/backbonetutorials</li>
+
+        <li><i class="icon-chevron-sign-right"></i><strong>Eliminating the boilerplate in your Backbone.js apps</strong><br>
+        https://leanpub.com/building-backbone-plugins
+        (por Derick Bailey, el creador de Marionette)</li>
+
+        <li><i class="icon-chevron-sign-right"></i><strong>Backbone.Marionette.js: A Gentle Introduction</strong><br>
+        https://leanpub.com/marionette-gentle-introduction</li>
+
+      </ul>
+
+
+    </section>
 
     <section style="font-size: 258.4%; padding: 20px 263.1px;" id="questions">
       <h1>¿Preguntas?</h1>
